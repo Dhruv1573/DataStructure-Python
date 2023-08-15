@@ -16,11 +16,22 @@ class LinkedList:
         while tmp_head.next:
             tmp_head=tmp_head.next
         tmp_head.next=newNode
-
-    def printLinkedList(self):
-        current=self.head
+    def reverseLL(self):
+        curr=self.head
+        prev=None
+        while curr:
+            tmp_node=curr.next
+            curr.next=prev
+            prev=curr
+            curr=tmp_node
+        return prev
+    def printLinkedList(self,newHead=None):
+        if newHead is None:
+            current=self.head
+        else:
+            current=newHead
         while current:
-            print(current.data)
+            print(current.data,end=" ")
             current=current.next
 if __name__=="__main__":
     LL=LinkedList()
@@ -30,6 +41,8 @@ if __name__=="__main__":
     LL.insertAtTail(15)
     LL.insertAtTail(20)
     LL.printLinkedList()
+    print("\nReversed LinkedList is")
+    LL.printLinkedList(LL.reverseLL())
 
 
 
